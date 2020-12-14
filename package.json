@@ -1,6 +1,6 @@
 {
   "name": "supertokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,7 +13,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "regenerator-runtime": "^0.13.7",
-    "supertokens-auth-react": "^0.2.0",
-    "supertokens-node": "^3.1.0"
+    "supertokens-auth-react": "^0.2.1",
+    "supertokens-node": "supertokens/supertokens-node#3.2.nextjs"
   }
 }

@@ -4392,7 +4392,7 @@ stylis@3.5.4:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
   integrity sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
 
-supertokens-auth-react@^0.2.0:
+supertokens-auth-react@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/supertokens-auth-react/-/supertokens-auth-react-0.2.1.tgz#68e1ac09fbfeff045ba43eb0302ea0aaa51ce123"
   integrity sha512-XRAv1MJfOZZxQbwdW0NYeSIctum+JVDgALVO7xkKo4yFI7AYICoIWFp07JvppH7d7WKkArRMxKgr2MGI3VSb1A==
@@ -4405,10 +4405,9 @@ supertokens-auth-react@^0.2.0:
   optionalDependencies:
     react-router-dom ">=5.0.0"
 
-supertokens-node@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/supertokens-node/-/supertokens-node-3.1.0.tgz#fbe12a305d5983c73422d20d3d20c40b432df55e"
-  integrity sha512-7DV+arz/LjIA7Vj3VDBP2ERpUOD/cEkbfk8i7NXYGbzmQWhADCcl1EmeSM1kF8CIrmzwHa2a+9d68rsVGaM+Bw==
+supertokens-node@supertokens/supertokens-node#3.2.nextjs:
+  version "3.2.0"
+  resolved "https://codeload.github.com/supertokens/supertokens-node/tar.gz/1acbe6f284678c86f2ea7f093d21b5a14061d0ec"
   dependencies:
     axios "0.19.0"
     body-parser "1.19.0"
