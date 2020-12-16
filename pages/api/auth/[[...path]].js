@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import SuperTokens from "supertokens-node";
-import superTokensMiddleware from "supertokens-node/nextjs";
+import {superTokensMiddleware} from "supertokens-node/nextjs";
 import Session from "supertokens-node/recipe/session";
 import EmailPassword from "supertokens-node/recipe/emailpassword";
 import Cors from 'cors';
