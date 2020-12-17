@@ -11,7 +11,7 @@ This repository is an example application that integrates SuperTokens in a NextJ
 
 
 
-## Get started
+## Run the app locally
 
 To get started quickly, fork this repository, then:
 
@@ -21,6 +21,6 @@ yarn
 yarn dev
 ```
 
-## Install
+## Get started with SuperTokens + NextJS
 
-If you would like to integrate SuperTokens in an existing NextJS application, please follow the [documentation](https://supertokens.io/docs/emailpassword/nextjs/supertokens-with-nextjs)
+Please follow the [documentation](https://supertokens.io/docs/emailpassword/nextjs/supertokens-with-nextjs)
