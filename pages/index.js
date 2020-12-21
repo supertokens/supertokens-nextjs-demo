@@ -4,14 +4,42 @@ import Head from 'next/head';
 import 'regenerator-runtime/runtime';
 import styles from '../styles/Home.module.css'
 import {doesSessionExist} from 'supertokens-auth-react/recipe/session';
-import { signOut } from "supertokens-auth-react/recipe/emailpassword";
+import {signOut} from "supertokens-auth-react/recipe/emailpassword";
+import "../supertokens";
+import {superTokensVerifySession} from "supertokens-node/nextjs";
 
-export default function Home() {
+export async function getServerSideProps({req, res}) {
+      await superTokensVerifySession(req, res);
+
+    // Redirect to /auth if session is not verified.
+    if (req.session === undefined) {
+        res.statusCode = 302
+        res.setHeader('Location', "/auth")
+        return {props: {}}
+    }
+    
+    // Otherwise, return any user data as props to frontend.
+    // Note: Here you can fetch any business related data from your database (with userId)
+    return { props: { 
+      "userId": req.session.userId,
+      "userDataInJWT": req.session.userDataInJWT,
+      "sessionHandle": req.session.sessionHandle
+      }
+    }
+}
+
+export default function Home({userId}) {
   const [hasSession, setHasSession] = useState(false);
 
   async function logoutClicked() {
     await signOut();
     window.location.href = "/auth";
+  }
+
+  async function fetchUserData() {
+    const res = await fetch(`${window.location.origin}/api/user`);
+    const json = await res.json();
+    alert(JSON.stringify(json));
   }
 
   useEffect(() => {
@@ -66,9 +94,39 @@ export default function Home() {
                       SIGN OUT
                   </div>
               </div>
+              <div
+                style={{
+                    display: "flex",
+                    height: "70px",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    paddingLeft: "75px",
+                    paddingRight: "75px"
+              }}>
+                  <div
+                      onClick={fetchUserData}
+                      style={{
+                          display: "flex",
+                          width: "150px",
+                          height: "42px",
+                          backgroundColor: "rgb(247 54 54)",
+                          borderRadius: "10px",
+                          cursor: "pointer",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#ffffff",
+                          fontWeight: "bold"
+                      }}>
+                      FETCH USER API
+                  </div>
+              </div>
               <p>
-                <a href="https://github.com/nkxxkn/supertokens-nextjs-demo" rel="noreferer" target="_blank">View the code on GitHub</a>
+                UserId: {userId}
               </p>
+              <p>
+                <a href="https://github.com/supertokens/supertokens-nextjs-demo" rel="noreferer" target="_blank">View the code on GitHub</a>
+              </p>
+                    
           </>
         }
         
