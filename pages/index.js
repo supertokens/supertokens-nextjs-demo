@@ -10,7 +10,7 @@ const EmailPasswordAuthNoSSR = dynamic(() => import('supertokens-auth-react/reci
   ssr: false
 });
 
-export default function Home({userId}) {
+export default function Home() {
   async function logoutClicked() {
     await signOut();
     window.location.href = "/auth";
