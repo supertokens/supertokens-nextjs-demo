@@ -11,7 +11,8 @@ const apiBasePath = "/api/auth/";
 if (typeof window === 'undefined') {
     SuperTokens.init({
         supertokens: {
-            connectionURI: "https://try.supertokens.io", // Replace with your SuperTokens core instance. See https://supertokens.io/docs/emailpassword/quick-setup/supertokens-core/overview
+            connectionURI: "http://localhost:9000"
+            // connectionURI: "https://try.supertokens.io", // Replace with your SuperTokens core instance. See https://supertokens.io/docs/emailpassword/quick-setup/supertokens-core/overview
         },
         appInfo: {
             appName: "SuperTokens Demo App",

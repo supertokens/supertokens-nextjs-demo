@@ -1,36 +1,16 @@
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Head from 'next/head';
 import 'regenerator-runtime/runtime';
 import styles from '../styles/Home.module.css'
-import {doesSessionExist} from 'supertokens-auth-react/recipe/session';
 import {signOut} from "supertokens-auth-react/recipe/emailpassword";
-import "../supertokens";
-import {superTokensVerifySession} from "supertokens-node/nextjs";
+import dynamic from 'next/dynamic';
 
-export async function getServerSideProps({req, res}) {
-      await superTokensVerifySession(req, res);
-
-    // Redirect to /auth if session is not verified.
-    if (req.session === undefined) {
-        res.statusCode = 302
-        res.setHeader('Location', "/auth")
-        return {props: {}}
-    }
-    
-    // Otherwise, return any user data as props to frontend.
-    // Note: Here you can fetch any business related data from your database (with userId)
-    return { props: { 
-      "userId": req.session.userId,
-      "userDataInJWT": req.session.userDataInJWT,
-      "sessionHandle": req.session.sessionHandle
-      }
-    }
-}
+const EmailPasswordAuthNoSSR = dynamic(() => import('supertokens-auth-react/recipe/emailpassword').then(mod => mod.EmailPasswordAuth), {
+  ssr: false
+});
 
 export default function Home({userId}) {
-  const [hasSession, setHasSession] = useState(false);
-
   async function logoutClicked() {
     await signOut();
     window.location.href = "/auth";
@@ -41,14 +21,6 @@ export default function Home({userId}) {
     const json = await res.json();
     alert(JSON.stringify(json));
   }
-
-  useEffect(() => {
-      if (doesSessionExist() === false) {
-          window.location.href = "/auth"; 
-      } else {
-        setHasSession(true);
-      }
-  }, [hasSession, setHasSession]);
 
   return (
     <div className={styles.container}>
@@ -61,74 +33,67 @@ export default function Home({userId}) {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+        <EmailPasswordAuthNoSSR>
+            <p className={styles.description}>
+              You are authenticated with SuperTokens!
+            </p>
 
-        {hasSession && 
-          <>
-              <p className={styles.description}>
-                You are authenticated with SuperTokens!
-              </p>
-
-              <div
-                style={{
-                    display: "flex",
-                    height: "70px",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    paddingLeft: "75px",
-                    paddingRight: "75px"
-              }}>
-                  <div
-                      onClick={logoutClicked}
-                      style={{
-                          display: "flex",
-                          width: "116px",
-                          height: "42px",
-                          backgroundColor: "#000000",
-                          borderRadius: "10px",
-                          cursor: "pointer",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#ffffff",
-                          fontWeight: "bold"
-                      }}>
-                      SIGN OUT
-                  </div>
-              </div>
-              <div
-                style={{
-                    display: "flex",
-                    height: "70px",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    paddingLeft: "75px",
-                    paddingRight: "75px"
-              }}>
-                  <div
-                      onClick={fetchUserData}
-                      style={{
-                          display: "flex",
-                          width: "150px",
-                          height: "42px",
-                          backgroundColor: "rgb(247 54 54)",
-                          borderRadius: "10px",
-                          cursor: "pointer",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#ffffff",
-                          fontWeight: "bold"
-                      }}>
-                      FETCH USER API
-                  </div>
-              </div>
-              <p>
-                UserId: {userId}
-              </p>
-              <p>
-                <a href="https://github.com/supertokens/supertokens-nextjs-demo" rel="noreferer" target="_blank">View the code on GitHub</a>
-              </p>
-                    
-          </>
-        }
+            <div
+              style={{
+                  display: "flex",
+                  height: "70px",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                  paddingLeft: "75px",
+                  paddingRight: "75px"
+            }}>
+                <div
+                    onClick={logoutClicked}
+                    style={{
+                        display: "flex",
+                        width: "116px",
+                        height: "42px",
+                        backgroundColor: "#000000",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#ffffff",
+                        fontWeight: "bold"
+                    }}>
+                    SIGN OUT
+                </div>
+            </div>
+            <div
+              style={{
+                  display: "flex",
+                  height: "70px",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                  paddingLeft: "75px",
+                  paddingRight: "75px"
+            }}>
+                <div
+                    onClick={fetchUserData}
+                    style={{
+                        display: "flex",
+                        width: "150px",
+                        height: "42px",
+                        backgroundColor: "rgb(247 54 54)",
+                        borderRadius: "10px",
+                        cursor: "pointer",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#ffffff",
+                        fontWeight: "bold"
+                    }}>
+                    FETCH USER API
+                </div>
+            </div>
+            <p>
+              <a href="https://github.com/supertokens/supertokens-nextjs-demo" rel="noreferer" target="_blank">View the code on GitHub</a>
+            </p>
+        </EmailPasswordAuthNoSSR>
         
         <div className={styles.grid}>
 
