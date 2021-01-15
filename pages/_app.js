@@ -17,10 +17,12 @@ if (typeof window !== 'undefined') {
       apiBasePath: "api/auth"
     },
     recipeList: [
-      EmailPassword.init(),
-      Session.init({
-        sessionScope: 'localhost'
-      })
+      EmailPassword.init({
+        emailVerificationFeature: {
+          mode: "REQUIRED"
+      }
+      }),
+      Session.init()
     ]
   });
 }
