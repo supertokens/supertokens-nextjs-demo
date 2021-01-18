@@ -4430,10 +4430,10 @@ stylis@^4.0.3, stylis@^4.0.6:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.6.tgz#0d8b97b6bc4748bea46f68602b6df27641b3c548"
   integrity sha512-1igcUEmYFBEO14uQHAJhCUelTR5jPztfdVKrYxRnDa5D5Dn3w0NxXupJNPr/VV/yRfZYEAco8sTIRZzH3sRYKg==
 
-supertokens-auth-react@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/supertokens-auth-react/-/supertokens-auth-react-0.4.0.tgz#d033fae7e5dcdc867401ec2534ed2f87b69738d4"
-  integrity sha512-ESsjAsy9k0wDaF/UiE0ILyURYdFLB6qB/EGEy0u6dDNhpWUvm5WtLsxOO751EMqVL4abNZ94t5x/fO7M8DprSg==
+supertokens-auth-react@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/supertokens-auth-react/-/supertokens-auth-react-0.4.2.tgz#63963d5befd6cbbb2e1136b61c08291d2affb402"
+  integrity sha512-qvbzjsCqwlTMEZCicSc1bTlB3vKjssJFZP8Kl6Ocw/68I3mufM/ocxVmZoHAqn9d7q6hmP2VJ2y7sKPq4pKkaw==
   dependencies:
     "@emotion/babel-plugin" "11.1.2"
     "@emotion/cache" "11.1.3"
