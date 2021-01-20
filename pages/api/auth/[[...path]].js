@@ -1,8 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import {superTokensMiddleware} from "supertokens-node/nextjs";
-import {runCORSMiddleware, getCors} from "../../../supertokens";
+import { superTokensNextWrapper } from 'supertokens-node/nextjs';
+import '../../../supertokens';
+import { middleware } from 'supertokens-node';
 
-export default async (req, res) => {
-    await runCORSMiddleware(req, res, getCors());
-    await superTokensMiddleware(req, res);
+export default async function superTokens(req, res) {
+    return await superTokensNextWrapper(
+        async (next) => {
+            await middleware()(req, res, next);
+        },
+        req,
+        res
+    );
 }
