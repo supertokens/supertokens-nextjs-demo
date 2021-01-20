@@ -13,7 +13,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "regenerator-runtime": "^0.13.7",
-    "supertokens-auth-react": "^0.4.2",
-    "supertokens-node": "^3.3.0"
+    "supertokens-auth-react": "^0.4.3",
+    "supertokens-node": "^3.3.1"
   }
 }

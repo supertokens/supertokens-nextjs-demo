@@ -3,16 +3,16 @@ import React from "react";
 import Head from 'next/head';
 import 'regenerator-runtime/runtime';
 import styles from '../styles/Home.module.css'
-import {signOut} from "supertokens-auth-react/recipe/emailpassword";
+import EmailPassword from "supertokens-auth-react/recipe/emailpassword";
 import dynamic from 'next/dynamic';
 
-const EmailPasswordAuthNoSSR = dynamic(() => import('supertokens-auth-react/recipe/emailpassword').then(mod => mod.EmailPasswordAuth), {
+const EmailPasswordAuthNoSSR = dynamic(() => Promise.resolve().then(() => EmailPassword.EmailPasswordAuth), {
   ssr: false
 });
 
 export default function Home() {
   async function logoutClicked() {
-    await signOut();
+    await EmailPassword.signOut();
     window.location.href = "/auth";
   }
 
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>SuperTokens 💫, Open Source Alternative to Auth0</title>
+        <title>SuperTokens 💫</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

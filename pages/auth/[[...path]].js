@@ -5,8 +5,8 @@ import styles from '../../styles/Home.module.css';
 import dynamic from 'next/dynamic';
 import SuperTokens  from 'supertokens-auth-react';
 
-const SuperTokensComponentNoSSR = dynamic(() => import('supertokens-auth-react').then(mod => {
-  return () => mod.getRoutingComponent() || null;
+const SuperTokensComponentNoSSR = dynamic(() => Promise.resolve().then(() => {
+  return () => SuperTokens.getRoutingComponent() || null;
 }), {
   ssr: false
 });
@@ -21,7 +21,7 @@ export default function Auth() {
     return (
         <div className={styles.container}>
           <Head>
-            <title>SuperTokens 💫, Open Source Alternative to Auth0</title>
+            <title>SuperTokens 💫</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
 

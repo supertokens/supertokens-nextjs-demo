@@ -6,14 +6,14 @@ import EmailPassword from 'supertokens-auth-react/recipe/emailpassword';
 import Session  from 'supertokens-auth-react/recipe/session';
 
 const websitePort = process.env.APP_PORT || 3000;
-const websiteUrl = process.env.NEXT_PUBLIC_APP_URL || `http://localhost:${websitePort}`; 
+const websiteDomain = process.env.NEXT_PUBLIC_APP_URL || `http://localhost:${websitePort}`; 
 
 if (typeof window !== 'undefined') {
   SuperTokens.init({
     appInfo: {
       appName: "SuperTokens Demo App",
-      apiDomain: websiteUrl,
-      websiteDomain: websiteUrl,
+      websiteDomain,
+      apiDomain: websiteDomain,
       apiBasePath: "api/auth"
     },
     recipeList: [
